@@ -14,7 +14,7 @@ const imageSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  filename: {
+  cloudinaryId: {
     type: String,
     required: true
   },
@@ -67,7 +67,7 @@ const imageSchema = new mongoose.Schema({
 });
 
 // Update artistUsername when saving
-imageSchema.pre('save', async function(next) {
+imageSchema.pre('save', async function (next) {
   if (this.isNew) {
     const User = mongoose.model('User');
     const user = await User.findById(this.artist);
