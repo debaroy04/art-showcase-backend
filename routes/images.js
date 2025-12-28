@@ -9,7 +9,7 @@ const fs = require('fs');
 // Configure multer for disk storage
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'uploads/');
+    cb(null, path.join(__dirname, 'uploads'));
   },
   filename: function (req, file, cb) {
     // Create unique filename with timestamp and original extension
@@ -18,6 +18,7 @@ const storage = multer.diskStorage({
     cb(null, file.fieldname + '-' + uniqueSuffix + ext);
   }
 });
+
 
 // File filter for images only
 const fileFilter = (req, file, cb) => {
